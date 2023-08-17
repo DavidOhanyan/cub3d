@@ -6,7 +6,7 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 21:11:07 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/16 17:30:22 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:04:43 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,6 +378,92 @@ char **create_only_map(char **argv, char **map)
 	return (map_maze);
 }
 
+void check_count_player(char **map_maze)
+{
+	int i;
+	int j;
+	int count;
+
+	i = (count = 0);
+	while (map_maze[i])
+	{
+		j = 0;
+		while (map_maze[i][j])
+		{
+			if (map_maze[i][j] == 'W' || map_maze[i][j] == 'S'
+				|| map_maze[i][j] == 'E' || map_maze[i][j] == 'N')
+					count++;
+			j++;
+		}
+		i++;
+	}
+	if (count != 1)
+	{
+		ft_putendl_fd("Error: bad player simbol", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void check_firs_last(char *line)
+{
+	int i;
+	char *res;
+
+	i = 0;
+	res = ft_strtrim(line, " \t");
+	while (res[i])
+	{
+		if (res[i] != '1' && res[i] != ' ')
+		{
+			ft_putendl_fd("Error: wrong map", 2);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+	if (res)
+		free(res);
+}
+
+void check_middle_line(char *line)
+{
+	int i;
+	char *res;
+
+	i = 0;
+	res = ft_strtrim(line, " \t");
+	if(res[i] != '1' || res[ft_strlen(res) - 1] != '1')
+	{
+		ft_putendl_fd("Error: wrong map", 2);
+		exit(EXIT_FAILURE);
+	}
+	while (res[i])
+	{
+		if(res[i] != '1' && res[i] != '0' && res[i] != ' ' && res[i] != 'N'
+			&& res[i] != 'S' && res[i] != 'W' && res[i] != 'E')
+		{
+			ft_putendl_fd("Error: wrong map", 2);
+			exit(EXIT_FAILURE);
+		}	
+		i++;
+	}
+	if (res)
+		free(res);
+}
+
+void check_map_simbols(char **map_maze)
+{
+	int i;
+	
+	i = 0;
+	while (map_maze[i])
+	{
+		if (i == 0 || i == splited_len(map_maze) - 1)
+			check_firs_last(map_maze[i]);
+		check_middle_line(map_maze[i]);
+		i++;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	t_news *news;	
@@ -392,5 +478,13 @@ int main(int argc, char **argv)
 	map = create_all_map(fd);
 	check_before_map(map, &news);
 	map_maze = create_only_map(argv, map);
+	if (!map_maze || !*map_maze)
+	{
+		ft_putendl_fd("Error: incorect map", 2);
+		exit(EXIT_FAILURE);
+	}
+	check_count_player(map_maze);
+	check_map_simbols(map_maze);
+	
 	return (0);
 }

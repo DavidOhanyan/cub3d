@@ -6,7 +6,7 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 21:09:35 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/16 16:31:23 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/16 22:09:48 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "get_next_line.h"
+
+#define MAP_SIMBOLS "01NSWE "
 
 typedef struct s_news
 {
