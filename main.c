@@ -6,7 +6,7 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 21:11:07 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/17 16:04:43 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/18 20:56:54 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,21 @@ char **create_all_map(int fd)
 {
 	char *line;
 	char *joined;
+	char *res;
 	char **splited;
 
 	joined = NULL;
 	line = NULL;
+	res = NULL;
 	splited = NULL;
 	while (1)
 	{
 		joined = get_next_line(fd);
 		if (!joined)
 			break;
-		line = ft_strjoin(line, joined);
+		res = ft_strtrim(joined, "\t");
+		line = ft_strjoin(line, res);
+		free(res);
 		free(joined);
 	}
 	close(fd);
@@ -98,7 +102,7 @@ void check_path_line(char **splited)
 		printf("");
 	else
 	{
-		ft_putendl_fd("Error: incorect name", 2);
+		ft_putendl_fd("Error: incorect name1", 2);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -257,7 +261,7 @@ void check_splited(char **splited, t_news **news)
 	}
 	if (!tp)
 	{
-		ft_putendl_fd("Error: incorect name", 2); 
+		ft_putendl_fd("Error: incorect name2", 2); 
 		exit(EXIT_FAILURE);
 	}
 }
@@ -266,17 +270,38 @@ void check_before_map(char **map, t_news **news)
 {
 	char **splited;
 	int i;
-	
+	int j;
+	// char *res;
+	char *res;
+	(void)news;
 	i = 0;
+	// res =
+	res = NULL;
 	splited = NULL;
 	while (i < 6)
 	{
+		j = 0;
 		if (map[i])
+		{
 			splited = ft_split(map[i], ' ');
+			while (splited[j])
+			{
+				res = ft_strjoin(res, splited[j]);
+				res = ft_strjoin(res, "\t");
+				j++;
+			}
+			// printf("%s\n",map[i]);
+			// printf("%s\n",res);
+			// free_2d(splited);
+			splited = ft_split(res, '\t');
+			free(res);
+			res = NULL;
+			check_splited(splited, news);
+			free_2d(splited);
+		}
 		else
 			break;
-		check_splited(splited, news);
-		free_2d(splited);
+			// printf("\n");
 		i++;
 	}
 	if (i != 6)
@@ -464,6 +489,40 @@ void check_map_simbols(char **map_maze)
 	}
 }
 
+void check_space(char **map_maze)
+{
+	size_t x;
+	size_t y;
+
+	x = 0;
+
+	while (map_maze[x])
+	{
+		printf("%s\n",map_maze[x]);
+		y = 0;
+		while (map_maze[x][y])
+		{
+			if (map_maze[x][y] == '0')
+			{
+				if (y > ft_strlen(map_maze[x + 1])
+					|| y > ft_strlen(map_maze[x - 1]))
+				{
+					ft_putendl_fd("Error: wrong map2", 2);
+					exit(EXIT_FAILURE);
+				}
+				if (map_maze[x][y + 1] == ' ' || map_maze[x][y - 1] == ' '
+					|| map_maze[x + 1][y] == ' ' || map_maze[x - 1][y] == ' ')
+				{
+					ft_putendl_fd("Error: wrong map3", 2);
+					exit(EXIT_FAILURE);
+				}
+			}	
+			y++;
+		}
+		x++;
+	}		
+}
+
 int main(int argc, char **argv)
 {
 	t_news *news;	
@@ -476,7 +535,13 @@ int main(int argc, char **argv)
 	fd = check_file_name(argc, argv);	
 	make_news(&news);
 	map = create_all_map(fd);
+	// int i = 0;
+	
 	check_before_map(map, &news);
+	// while (map[i])
+	// {
+	// 	printf("%s",ft_strtrim(map[i++],"\t"));
+	// }
 	map_maze = create_only_map(argv, map);
 	if (!map_maze || !*map_maze)
 	{
@@ -485,6 +550,7 @@ int main(int argc, char **argv)
 	}
 	check_count_player(map_maze);
 	check_map_simbols(map_maze);
-	
+	check_space(map_maze);
+
 	return (0);
 }
