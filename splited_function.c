@@ -6,7 +6,7 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:30:55 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 20:09:44 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:20:46 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	check_path_line(char **splited)
 {
-	if (splited_len(splited) == 2
-		&& ft_strcmp(ft_strrchr(splited[1], '.'), ".xpm") == 0
-		&& splited[2] == NULL)
+	if (splited_len(splited) == 2 && ft_strcmp(ft_strrchr(splited[1], '.'), ".xpm") == 0 && splited[2] == NULL)
 		printf("");
 	else
 	{
