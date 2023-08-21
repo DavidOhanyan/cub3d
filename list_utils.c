@@ -6,16 +6,16 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:18:51 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:20:37 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:06:32 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int lst_siz(t_news *news)
+int	lst_siz(t_news *news)
 {
-	int i;
-	t_news *tp;
+	int		i;
+	t_news	*tp;
 
 	tp = news;
 	i = 0;
@@ -27,18 +27,18 @@ int lst_siz(t_news *news)
 	return (i);
 }
 
-t_news *fine_node(t_news **news, char *line)
+t_news	*fine_node(t_news **news, char *line)
 {
-	t_news *tp;
+	t_news	*tp;
 
 	tp = *news;
 	while (tp)
 	{
 		if (ft_strcmp(tp->line, line) == 0)
-			return(tp);
+			return (tp);
 		tp = tp->next;
 	}
-		return (NULL);
+	return (NULL);
 }
 
 void	lst_del(t_news *del)
@@ -47,7 +47,7 @@ void	lst_del(t_news *del)
 	free(del);
 }
 
-void lst_pop(t_news **news, t_news *remov)
+void	lst_pop(t_news **news, t_news *remov)
 {
 	t_news	*next;
 	t_news	*prev;

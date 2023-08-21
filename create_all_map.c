@@ -6,18 +6,17 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:41:49 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:42:11 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:05:35 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void check_last_line(char *line)
+void	check_last_line(char *line)
 {
-	char *last;
+	char	*last;
 
 	last = NULL;
-	
 	last = ft_strrchr(line, '\n');
 	if (ft_strlen(last) == 1)
 	{
@@ -26,12 +25,12 @@ void check_last_line(char *line)
 	}
 }
 
-char **create_all_map(int fd)
+char	**create_all_map(int fd)
 {
-	char *line;
-	char *joined;
-	char *res;
-	char **splited;
+	char	*line;
+	char	*joined;
+	char	*res;
+	char	**splited;
 
 	joined = NULL;
 	line = NULL;
@@ -41,7 +40,7 @@ char **create_all_map(int fd)
 	{
 		joined = get_next_line(fd);
 		if (!joined)
-			break;
+			break ;
 		res = ft_strtrim(joined, "\t ");
 		line = ft_strjoin(line, res);
 		free(res);

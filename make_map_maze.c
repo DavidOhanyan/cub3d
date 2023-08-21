@@ -6,20 +6,20 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:17:04 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:17:13 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:09:07 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void check_new_line(char *line)
+void	check_new_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if(line[i] == '\n' && line[i + 1] == '\n')
+		if (line[i] == '\n' && line[i + 1] == '\n')
 		{
 			ft_putendl_fd("Error: new line", 2);
 			exit(EXIT_FAILURE);
@@ -28,14 +28,14 @@ void check_new_line(char *line)
 	}
 }
 
-char **return_map_maze(char *line, char **map)
+char	**return_map_maze(char *line, char **map)
 {
-	char *res;
-	char *last;
-	char **map_maze;
+	char	*res;
+	char	*last;
+	char	**map_maze;
 
 	res = NULL;
-	last =  ft_strdup(map[5]);
+	last = ft_strdup(map[5]);
 	map_maze = NULL;
 	res = ft_strdup((ft_strstr(line, last) + ft_strlen(last)));
 	free(line);
@@ -48,11 +48,11 @@ char **return_map_maze(char *line, char **map)
 	return (map_maze);
 }
 
-char **creat_map_maze(char **argv, char **map)
+char	**creat_map_maze(char **argv, char **map)
 {
-	char *line;
-	char *joined;
-	int fd;
+	char	*line;
+	char	*joined;
+	int		fd;
 
 	joined = NULL;
 	line = NULL;
@@ -61,7 +61,7 @@ char **creat_map_maze(char **argv, char **map)
 	{
 		joined = get_next_line(fd);
 		if (!joined)
-			break;
+			break ;
 		line = ft_strjoin(line, joined);
 		free(joined);
 	}

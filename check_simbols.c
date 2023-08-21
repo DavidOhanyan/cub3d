@@ -6,16 +6,16 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:11:15 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:11:40 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 19:58:54 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void check_firs_last(char *line)
+void	check_firs_last(char *line)
 {
-	int i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 0;
 	res = ft_strtrim(line, " \t");
@@ -32,21 +32,21 @@ void check_firs_last(char *line)
 		free(res);
 }
 
-void check_middle_line(char *line)
+void	check_middle_line(char *line)
 {
-	int i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 0;
 	res = ft_strtrim(line, " \t");
-	if(res[i] != '1' || res[ft_strlen(res) - 1] != '1')
+	if (res[i] != '1' || res[ft_strlen(res) - 1] != '1')
 	{
 		ft_putendl_fd("Error: wrong map", 2);
 		exit(EXIT_FAILURE);
 	}
 	while (res[i])
 	{
-		if(res[i] != '1' && res[i] != '0' && res[i] != ' ' && res[i] != 'N'
+		if (res[i] != '1' && res[i] != '0' && res[i] != ' ' && res[i] != 'N'
 			&& res[i] != 'S' && res[i] != 'W' && res[i] != 'E')
 		{
 			ft_putendl_fd("Error: wrong map", 2);
@@ -58,10 +58,10 @@ void check_middle_line(char *line)
 		free(res);
 }
 
-void check_map_simbols(char **map_maze)
+void	check_map_simbols(char **map_maze)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (map_maze[i])
 	{

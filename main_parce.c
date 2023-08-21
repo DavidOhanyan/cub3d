@@ -6,17 +6,17 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:37:28 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:39:41 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:01:02 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void check_count_player(char **map_maze)
+void	check_count_player(char **map_maze)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = (count = 0);
 	while (map_maze[i])
@@ -38,10 +38,10 @@ void check_count_player(char **map_maze)
 	}
 }
 
-void check_empty(char **map_maze)
+void	check_empty(char **map_maze)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (map_maze[i])
@@ -60,8 +60,8 @@ void check_empty(char **map_maze)
 				else
 				{
 					if (map_maze[i + 1][j] == ' ' || map_maze[i - 1][j] == ' '
-						 || map_maze[i][j + 1] == ' ' || map_maze[i][j - 1] == ' '
-						|| map_maze[i + 1][j] == '\t' || map_maze[i - 1][j] == '\t')
+						|| map_maze[i][j + 1] == ' ' || map_maze[i][j - 1] == ' '
+							|| map_maze[i + 1][j] == '\t' || map_maze[i - 1][j] == '\t')
 					{
 						ft_putendl_fd("Error: wrong map42", 2);
 						exit(EXIT_FAILURE);

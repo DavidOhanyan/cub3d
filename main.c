@@ -6,7 +6,7 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 21:11:07 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:42:30 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:01:11 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int main(int argc, char **argv)
 {
-	t_news *news;	
-	char **map;
-	char **map_maze;
-	int fd;
+	t_news	*news;	
+	char	**map;
+	char	**map_maze;
+	int		fd;
 	
 	news = NULL;
 	map_maze = NULL;

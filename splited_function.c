@@ -6,18 +6,17 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:30:55 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:36:11 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:09:44 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-void check_path_line(char **splited)
+void	check_path_line(char **splited)
 {
 	if (splited_len(splited) == 2
 		&& ft_strcmp(ft_strrchr(splited[1], '.'), ".xpm") == 0
-			&& splited[2] == NULL)
+		&& splited[2] == NULL)
 		printf("");
 	else
 	{
@@ -26,11 +25,9 @@ void check_path_line(char **splited)
 	}
 }
 
-
-
-void check_splited(char **splited, t_news **news)
+void	check_splited(char **splited, t_news **news)
 {
-	t_news *tp;
+	t_news	*tp;
 
 	tp = *news;
 	while (tp)
@@ -39,7 +36,7 @@ void check_splited(char **splited, t_news **news)
 		{
 			if (ft_strlen(tp->line) == 2)
 				check_path_line(splited);
-			if(ft_strlen(tp->line) == 1)
+			if (ft_strlen(tp->line) == 1)
 				check_color_line(splited);
 			lst_pop(news, fine_node(news, tp->line));
 			return ;
@@ -48,16 +45,16 @@ void check_splited(char **splited, t_news **news)
 	}
 	if (!tp)
 	{
-		ft_putendl_fd("Error: incorect name2", 2); 
+		ft_putendl_fd("Error: incorect name2", 2);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void make_splited(char *line, t_news **news)
+void	make_splited(char *line, t_news **news)
 {
-	char **splited;
-	char *res;
-	int j;
+	char	**splited;
+	char	*res;
+	int		j;
 
 	splited = NULL;
 	res = NULL;
@@ -77,13 +74,12 @@ void make_splited(char *line, t_news **news)
 	free_2d(splited);
 }
 
-
-void check_before_map(char **map, t_news **news)
+void	check_before_map(char **map, t_news **news)
 {
-	char **splited;
-	char *res;
-	int i;
-	int j;
+	char	**splited;
+	char	*res;
+	int		i;
+	int		j;
 
 	splited = NULL;
 	res = NULL;
@@ -94,7 +90,7 @@ void check_before_map(char **map, t_news **news)
 		if (map[i])
 			make_splited(map[i], news);
 		else
-			break;
+			break ;
 		i++;
 	}
 	if (i != 6)

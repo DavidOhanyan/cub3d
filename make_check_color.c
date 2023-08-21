@@ -6,38 +6,39 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:27:29 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:27:37 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:08:46 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void check_size_args(char **nubs)
+void	check_size_args(char **nubs)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (nubs[i])
 	{
 		if (ft_atoi(nubs[i]) > 255)
 		{
-			ft_putendl_fd("Error: more then 255", 2); 
+			ft_putendl_fd("Error: more then 255", 2);
 			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
 }
 
-void check_color_nub(char *line)
+void	check_color_nub(char *line)
 {
-	char **nubs;
-	int i;
-	int j;
+	char	**nubs;
+	int		i;
+	int		j;
 
 	i = 0;
 	nubs = ft_split(line, ',');
 	if (splited_len(nubs) != 3)
 	{
-		ft_putendl_fd("Error: more color args", 2); 
+		ft_putendl_fd("Error: more color args", 2);
 		exit(EXIT_FAILURE);
 	}
 	while (nubs[i])
@@ -45,9 +46,9 @@ void check_color_nub(char *line)
 		j = 0;
 		while (nubs[i][j])
 		{
-			if(nubs[i][j] < '0' || nubs[i][j] > '9' || ft_strlen(nubs[i]) > 3)
+			if (nubs[i][j] < '0' || nubs[i][j] > '9' || ft_strlen(nubs[i]) > 3)
 			{
-				ft_putendl_fd("Error: bad color argument", 2); 
+				ft_putendl_fd("Error: bad color argument", 2);
 				exit(EXIT_FAILURE);
 			}	
 			j++;
@@ -58,11 +59,10 @@ void check_color_nub(char *line)
 	free_2d(nubs);
 }
 
-
-char *make_color_line(char **splited, int *comma)
+char	*make_color_line(char **splited, int *comma)
 {
-	char *line;
-	int i;
+	char	*line;
+	int		i;
 
 	line = NULL;
 	i = 1;
@@ -79,12 +79,12 @@ char *make_color_line(char **splited, int *comma)
 	return (line);
 }
 
-void check_color_line(char **splited)
+void	check_color_line(char **splited)
 {
-	int i;
-	int comma;
-	int count;
-	char *line;
+	int		i;
+	int		comma;
+	int		count;
+	char	*line;
 
 	i = 0;
 	comma = 0;
@@ -98,10 +98,9 @@ void check_color_line(char **splited)
 	}
 	if (count - comma != 2)
 	{
-		ft_putendl_fd("Error: more or less comma22222", 2); 
+		ft_putendl_fd("Error: more or less comma22222", 2);
 		exit(EXIT_FAILURE);
 	}
 	check_color_nub(line);
 	free(line);
-	
 }

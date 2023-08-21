@@ -6,16 +6,16 @@
 /*   By: dohanyan <dohanyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 19:24:24 by dohanyan          #+#    #+#             */
-/*   Updated: 2023/08/21 19:15:54 by dohanyan         ###   ########.fr       */
+/*   Updated: 2023/08/21 20:04:39 by dohanyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int splited_len(char **splited)
+int	splited_len(char **splited)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (!splited)
 		return (i);
@@ -24,10 +24,10 @@ int splited_len(char **splited)
 	return (i);
 }
 
-void replac_player(char **map_maze)
+void	replac_player(char **map_maze)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map_maze[i])
@@ -37,17 +37,17 @@ void replac_player(char **map_maze)
 		{
 			if (map_maze[i][j] == 'N' || map_maze[i][j] == 'S'
 				|| map_maze[i][j] == 'E' || map_maze[i][j] == 'W')
-				map_maze[i][j] = 'P';
+					map_maze[i][j] = 'P';
 			j++;
 		}
 		i++;
 	}
 }
 
-void replace_first_tab(char **map_maze)
+void	replace_first_tab(char **map_maze)
 {
-	int i;
-	char *line;
+	int		i;
+	char	*line;
 
 	i = 0;
 	line = NULL;
@@ -61,6 +61,5 @@ void replace_first_tab(char **map_maze)
 			free(line);
 		}
 		i++;
-	}
-	
+	}	
 }
